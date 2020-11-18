@@ -2,11 +2,11 @@ import React from 'react';
 import { format } from 'date-fns';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteLog } from '../../actions/logActions';
+import { deleteLog, setCurrent } from '../../actions/logActions';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const LogItem = ({ log, deleteLog }) => {
+const LogItem = ({ log, deleteLog, setCurrent }) => {
   const { id, message, tech, date, attention } = log;
 
   const onDelete = () => {
@@ -19,12 +19,13 @@ const LogItem = ({ log, deleteLog }) => {
         <a
           href='#edit-log-modal'
           className={`modal-trigger ${attention ? 'red-text' : 'blue-text'}`}
+          onClick={() => setCurrent(log)}
         >
           {message}
         </a>
         <br />
         <span className='grey-text'>
-          <span className='black-text'>ID# {id}</span> last update by{' '}
+          <span className='black-text'>ID# {id}</span> last updated by{' '}
           <span className='black-text'>{tech}</span> on{' '}
           {format(new Date(date), 'MMMM do yyyy, h:mm:ss a')}
         </span>
@@ -38,7 +39,8 @@ const LogItem = ({ log, deleteLog }) => {
 
 LogItem.propTypes = {
   log: PropTypes.object.isRequired,
-  deleteLog: PropTypes.func.isRequired
+  deleteLog: PropTypes.func.isRequired,
+  setCurrent: PropTypes.func.isRequired
 };
 
-export default connect(null, { deleteLog })(LogItem);
+export default connect(null, { deleteLog, setCurrent })(LogItem);
