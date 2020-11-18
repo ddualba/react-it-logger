@@ -20,6 +20,13 @@
       "tech": "John Doe",
       "date": "2020-11-17T23:24:01.592Z",
       "id": 3
+    },
+    {
+      "id": 4,
+      "message": "Added 2nd hard drive to Server 1",
+      "attention": false,
+      "tech": "Sara Wilson",
+      "date": "2020-11-18T01:44:03.121Z"
     }
   ],
   "techs": [
